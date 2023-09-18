@@ -1,0 +1,1 @@
+export const URL = 'https://private-8375f-whatsapp13.apiary-mock.com'
