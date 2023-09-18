@@ -4,9 +4,11 @@ import { useEffect, useState } from "react"
 import { generateMessageDate, timestampToHHSS } from "../../utils"
 import Background from '../../assets/background.png'
 import ChatHeader from "./header/ChatHeader"
+import FormMessage from "./form-message/FormMessage"
 
 const ChatScreen = (): JSX.Element => {
     const [chats, setChats] = useState([])
+    const [message, setMessage] = useState("")
 
     const getConversetion = () => {
         fetchConversetion()
@@ -16,6 +18,10 @@ const ChatScreen = (): JSX.Element => {
                 setChats(res.data)
             })
             .catch(err => console.log('error fetchConversetion ', err))    
+    }
+
+    const handleChangeInput = (e) => {
+        setMessage(e.target.value)
     }
 
     useEffect(() => {
@@ -55,6 +61,7 @@ const ChatScreen = (): JSX.Element => {
                         )) : <Text style={styles.text}>TEXTTT</Text>}
                     </View>
                 </ScrollView>
+                <FormMessage inputValue={message} onChangeInput={(e) => handleChangeInput(e)} />
             </ImageBackground>
         // </SafeAreaView>
     )
